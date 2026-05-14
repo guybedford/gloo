@@ -155,6 +155,7 @@ jobs:
           RUSTFLAGS: '-Cpanic=unwind'
         run: |
           cargo build -p gloo-timers --target wasm32-unknown-unknown -Zbuild-std=std,panic_unwind
+          cargo build -p gloo-timers --features futures --target wasm32-unknown-unknown -Zbuild-std=std,panic_unwind
 
   test-history-wasi:
     name: Test gloo-history WASI
