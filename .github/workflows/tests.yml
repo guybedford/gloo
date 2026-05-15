@@ -142,23 +142,10 @@ jobs:
             cargo-${{ runner.os }}-panic-unwind-
             cargo-${{ runner.os }}-
 
-      # Verify every gloo crate that wraps user closures via `Closure::wrap`
-      # / `Closure::once` still builds cleanly under `panic = "unwind"`
-      # against the `MaybeUnwindSafe` bounds added in wasm-bindgen 0.2.117+.
-      # Catches downstream regressions like
-      # https://github.com/MattiasBuelens/wasm-streams/pull/35 from creeping
-      # in. The crates listed here are the ones that host wasm-bindgen
-      # closures; the others have no relevant code path.
       - name: Build crates with panic=unwind
         env:
           RUSTFLAGS: '-Cpanic=unwind'
-        run: |
-          cargo build -p gloo-timers --target wasm32-unknown-unknown -Zbuild-std=std,panic_unwind
-          cargo build -p gloo-timers --features futures --target wasm32-unknown-unknown -Zbuild-std=std,panic_unwind
-          cargo build -p gloo-events --target wasm32-unknown-unknown -Zbuild-std=std,panic_unwind
-          cargo build -p gloo-render --target wasm32-unknown-unknown -Zbuild-std=std,panic_unwind
-          cargo build -p gloo-net --target wasm32-unknown-unknown -Zbuild-std=std,panic_unwind
-          cargo build -p gloo-worker --target wasm32-unknown-unknown -Zbuild-std=std,panic_unwind
+        run: cargo build -p gloo-timers -p gloo-events -p gloo-render -p gloo-net -p gloo-worker --all-features --target wasm32-unknown-unknown -Zbuild-std=std,panic_unwind
 
   test-history-wasi:
     name: Test gloo-history WASI
