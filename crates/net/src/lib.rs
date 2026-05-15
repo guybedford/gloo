@@ -93,9 +93,17 @@
 // legitimately reachable (a missing wake, a missing message). On any other
 // panic strategy this reduces to plain `Closure::wrap`.
 #[cfg(all(target_arch = "wasm32", panic = "unwind"))]
-macro_rules! wrap_internal { ($e:expr) => { wasm_bindgen::closure::Closure::wrap_assert_unwind_safe($e) } }
+macro_rules! wrap_internal {
+    ($e:expr) => {
+        wasm_bindgen::closure::Closure::wrap_assert_unwind_safe($e)
+    };
+}
 #[cfg(not(all(target_arch = "wasm32", panic = "unwind")))]
-macro_rules! wrap_internal { ($e:expr) => { wasm_bindgen::closure::Closure::wrap($e) } }
+macro_rules! wrap_internal {
+    ($e:expr) => {
+        wasm_bindgen::closure::Closure::wrap($e)
+    };
+}
 
 mod error;
 #[cfg(feature = "eventsource")]

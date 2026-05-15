@@ -77,9 +77,13 @@ where
             callback(time);
         }) as Box<dyn Fn(JsValue)>;
         #[cfg(all(target_arch = "wasm32", panic = "unwind"))]
-        { Closure::wrap_assert_unwind_safe(inner) }
+        {
+            Closure::wrap_assert_unwind_safe(inner)
+        }
         #[cfg(not(all(target_arch = "wasm32", panic = "unwind")))]
-        { Closure::wrap(inner) }
+        {
+            Closure::wrap(inner)
+        }
     };
 
     let render_id = web_sys::window()
