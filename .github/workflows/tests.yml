@@ -125,12 +125,9 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
-      # Recent Rust nightlies with LLVM 22 are temporarily broken with
-      # `panic=unwind` (see wasm-bindgen/wasm-bindgen#4929). Pin to a known-good
-      # nightly to avoid flapping.
       - uses: dtolnay/rust-toolchain@master
         with:
-          toolchain: nightly-2026-01-28
+          toolchain: nightly
           target: wasm32-unknown-unknown
           components: rust-src
 
@@ -145,17 +142,23 @@ jobs:
             cargo-${{ runner.os }}-panic-unwind-
             cargo-${{ runner.os }}-
 
-      # Verify gloo-timers (and any other crate that hosts user closures via
-      # `Closure::wrap` / `Closure::once`) still builds cleanly under
-      # `panic = "unwind"` against the new `MaybeUnwindSafe` bounds added in
-      # wasm-bindgen 0.2.117+. Catches downstream regressions like
-      # https://github.com/MattiasBuelens/wasm-streams/pull/35 from creeping in.
+      # Verify every gloo crate that wraps user closures via `Closure::wrap`
+      # / `Closure::once` still builds cleanly under `panic = "unwind"`
+      # against the `MaybeUnwindSafe` bounds added in wasm-bindgen 0.2.117+.
+      # Catches downstream regressions like
+      # https://github.com/MattiasBuelens/wasm-streams/pull/35 from creeping
+      # in. The crates listed here are the ones that host wasm-bindgen
+      # closures; the others have no relevant code path.
       - name: Build crates with panic=unwind
         env:
           RUSTFLAGS: '-Cpanic=unwind'
         run: |
           cargo build -p gloo-timers --target wasm32-unknown-unknown -Zbuild-std=std,panic_unwind
           cargo build -p gloo-timers --features futures --target wasm32-unknown-unknown -Zbuild-std=std,panic_unwind
+          cargo build -p gloo-events --target wasm32-unknown-unknown -Zbuild-std=std,panic_unwind
+          cargo build -p gloo-render --target wasm32-unknown-unknown -Zbuild-std=std,panic_unwind
+          cargo build -p gloo-net --target wasm32-unknown-unknown -Zbuild-std=std,panic_unwind
+          cargo build -p gloo-worker --target wasm32-unknown-unknown -Zbuild-std=std,panic_unwind
 
   test-history-wasi:
     name: Test gloo-history WASI
