@@ -87,7 +87,7 @@ impl TimeoutFuture {
         // The wrapper is unwound by a helper rather than `let _(x) = w;` or
         // `w.0` so that RFC 2229 disjoint-capture sees the closure capturing
         // `AssertUnwindSafe<Sender<()>>` (UnwindSafe) and not the inner
-        // `Sender<()>` (!UnwindSafe). See the discussion in PR #563.
+        // `Sender<()>` (!UnwindSafe). See the discussion in PR #562.
         let tx = AssertUnwindSafe(tx);
         let inner = Timeout::new(millis, move || {
             // if the receiver was dropped we do nothing.

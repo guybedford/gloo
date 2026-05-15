@@ -17,14 +17,7 @@ pub trait CallbackUnwindSafe: std::panic::UnwindSafe {}
 #[cfg(all(target_arch = "wasm32", panic = "unwind"))]
 impl<T: std::panic::UnwindSafe> CallbackUnwindSafe for T {}
 
-/// Bound carrying the unwind-safety requirement on [`Timeout::new`] /
-/// [`Interval::new`] callbacks.
-///
-/// Under `panic = "unwind"` on wasm the callback is invoked across a
-/// `catch_unwind` boundary inside `wasm_bindgen`, so this resolves to
-/// [`std::panic::UnwindSafe`]. Under any other panic strategy it is a no-op
-/// blanket. Wrap non-`UnwindSafe` captures in [`std::panic::AssertUnwindSafe`]
-/// at the call site.
+#[doc(hidden)]
 #[cfg(not(all(target_arch = "wasm32", panic = "unwind")))]
 pub trait CallbackUnwindSafe {}
 #[cfg(not(all(target_arch = "wasm32", panic = "unwind")))]
