@@ -1,0 +1,33 @@
+crates/worker/src/actor/native_worker.rs
+  8c71f60848de8424 49-62
+crates/net/src/websocket/futures.rs
+  8c71f60848de8424 136,154,166,178
+crates/net/src/eventsource/futures.rs
+  8c71f60848de8424 180,195
+crates/render/src/lib.rs
+  8c71f60848de8424 12-30,62,65-71,74,78-82
+crates/net/src/lib.rs
+  8c71f60848de8424 85-99
+crates/events/src/lib.rs
+  8c71f60848de8424 18-35,352,354-363,401,403-407,485,487-492,554,556-559
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.8",
+  "base_commit_sha": "0ad3861024a364c2dca5e0fb750edc29f16b9d28",
+  "prompts": {
+    "8c71f60848de8424": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_1d303de7fffeqM0TdjqV0uC2Nw",
+        "model": "anthropic/claude-opus-4-7"
+      },
+      "human_author": "Guy Bedford",
+      "messages": [],
+      "total_additions": 115,
+      "total_deletions": 16,
+      "accepted_lines": 115,
+      "overriden_lines": 0
+    }
+  }
+}
