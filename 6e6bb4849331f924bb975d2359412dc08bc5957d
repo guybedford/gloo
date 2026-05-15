@@ -1,0 +1,23 @@
+.github/workflows/tests.yml
+  8c71f60848de8424 156
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.8",
+  "base_commit_sha": "6e6bb4849331f924bb975d2359412dc08bc5957d",
+  "prompts": {
+    "8c71f60848de8424": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_1d303de7fffeqM0TdjqV0uC2Nw",
+        "model": "anthropic/claude-opus-4-7"
+      },
+      "human_author": "Guy Bedford",
+      "messages": [],
+      "total_additions": 1,
+      "total_deletions": 5,
+      "accepted_lines": 1,
+      "overriden_lines": 0
+    }
+  }
+}
