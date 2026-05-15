@@ -1,0 +1,25 @@
+crates/render/src/lib.rs
+  8c71f60848de8424 80-82,84-86
+crates/net/src/lib.rs
+  8c71f60848de8424 96-100,102-106
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.8",
+  "base_commit_sha": "af0f977564a27fd92ce3a185d585ac0d6c4c2da4",
+  "prompts": {
+    "8c71f60848de8424": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_1d303de7fffeqM0TdjqV0uC2Nw",
+        "model": "anthropic/claude-opus-4-7"
+      },
+      "human_author": "Guy Bedford",
+      "messages": [],
+      "total_additions": 16,
+      "total_deletions": 4,
+      "accepted_lines": 16,
+      "overriden_lines": 0
+    }
+  }
+}
