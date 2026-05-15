@@ -1,0 +1,27 @@
+crates/timers/Cargo.toml
+  8c71f60848de8424 18
+crates/timers/src/future.rs
+  8c71f60848de8424 90
+crates/timers/src/callback.rs
+  8c71f60848de8424 20
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.8",
+  "base_commit_sha": "c2175a1f53fadcb38b65f58b5db03c3d5f285d1a",
+  "prompts": {
+    "8c71f60848de8424": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_1d303de7fffeqM0TdjqV0uC2Nw",
+        "model": "anthropic/claude-opus-4-7"
+      },
+      "human_author": "Guy Bedford",
+      "messages": [],
+      "total_additions": 3,
+      "total_deletions": 10,
+      "accepted_lines": 3,
+      "overriden_lines": 0
+    }
+  }
+}
